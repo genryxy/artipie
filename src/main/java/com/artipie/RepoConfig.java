@@ -120,7 +120,7 @@ public final class RepoConfig {
     public CompletionStage<Storage> storage() {
         return this.repo()
             .thenApply(map -> map.yamlMapping("storage"))
-            .thenApply((YamlMapping mapping) -> new YamlStorageSettings(mapping, this.vertx))
+            .thenApply(YamlStorageSettings::new)
             .thenApply(YamlStorageSettings::storage);
     }
 

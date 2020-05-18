@@ -41,6 +41,7 @@ import org.junit.jupiter.api.Test;
  * @since 0.2
  */
 public final class RepoConfigTest {
+
     /**
      * Vertx instance.
      */
@@ -112,8 +113,7 @@ public final class RepoConfigTest {
                     .getContextClassLoader()
                     .getResource(name)
                     .toURI()
-            ),
-            this.vertx.fileSystem()
+            )
         );
         return new RepoConfig(this.vertx, file.flow());
     }
