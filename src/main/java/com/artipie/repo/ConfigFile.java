@@ -78,8 +78,8 @@ public final class ConfigFile {
      * @param storage Storage where the file with different extensions is checked for existence
      * @return True if a file with either of the two extensions exists, false otherwise.
      */
-    public CompletionStage<Boolean> existsIn(final Storage storage) {
-        final CompletionStage<Boolean> res;
+    public CompletableFuture<Boolean> existsIn(final Storage storage) {
+        final CompletableFuture<Boolean> res;
         if (this.isYamlOrYml() || this.extension().isEmpty()) {
             final String name = this.name();
             final Key yaml = Extension.YAML.key(name);
@@ -108,7 +108,7 @@ public final class ConfigFile {
      * @param storage Storage from which the file is obtained
      * @return Content of the file.
      */
-    public CompletionStage<Content> valueFrom(final Storage storage) {
+    public CompletableFuture<Content> valueFrom(final Storage storage) {
         if (!(this.isYamlOrYml() || this.extension().isEmpty())) {
             throw new IllegalStateException(
                 String.format(

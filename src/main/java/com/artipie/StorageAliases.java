@@ -72,7 +72,7 @@ public interface StorageAliases {
         final Key.From key = new Key.From(repo, StorageAliases.FILE_NAME);
         return new ConfigFile(key).existsIn(storage).thenCompose(
             found -> {
-                final CompletionStage<StorageAliases> res;
+                final CompletableFuture<StorageAliases> res;
                 if (found) {
                     res = new ConfigFile(key).valueFrom(storage).thenCompose(
                         pub -> new Concatenation(pub).single()
@@ -89,7 +89,7 @@ public interface StorageAliases {
                 }
                 return res;
             }
-        ).toCompletableFuture();
+        );
     }
 
     /**
