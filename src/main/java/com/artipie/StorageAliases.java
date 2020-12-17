@@ -34,6 +34,7 @@ import hu.akarnokd.rxjava2.interop.SingleInterop;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 
 /**
  * Storage configuration by alias.
@@ -69,11 +70,11 @@ public interface StorageAliases {
     @SuppressWarnings("PMD.ProhibitPublicStaticMethods")
     static CompletableFuture<StorageAliases> find(final Storage storage, final Key repo) {
         final Key.From key = new Key.From(repo, StorageAliases.FILE_NAME);
-        return new ConfigFile(key).existsIn(storage).thenCompose(
+        return storage.exists(key).thenCompose(
             found -> {
                 final CompletableFuture<StorageAliases> res;
                 if (found) {
-                    res = new ConfigFile(key).valueFrom(storage).thenCompose(
+                    res = storage.value(key).thenCompose(
                         pub -> new Concatenation(pub).single()
                             .map(buf -> new Remaining(buf).bytes())
                             .map(bytes -> new String(bytes, StandardCharsets.UTF_8))
