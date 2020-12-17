@@ -103,38 +103,6 @@ public final class ConfigFile {
     }
 
     /**
-     * Obtains contents from the specified storage. If files with both extensions
-     * exists, the file with `.yaml` extension will be obtained.
-     * @param storage Storage from which the file is obtained
-     * @return Content of the file.
-     */
-    public CompletableFuture<Content> valueFrom(final Storage storage) {
-        if (!(this.isYamlOrYml() || this.extension().isEmpty())) {
-            throw new IllegalStateException(
-                String.format(
-                    "Filename `%s` should have `.yaml` or `.yml` extension or be without extension",
-                    this.filename
-                )
-            );
-        }
-        final String name = this.name();
-        final Key yaml = Extension.YAML.key(name);
-        return storage.exists(yaml)
-            .thenCompose(
-                exists -> {
-                    final CompletionStage<Content> result;
-                    if (exists) {
-                        result = storage.value(yaml);
-                    } else {
-                        final Key yml = Extension.YML.key(name);
-                        result = storage.value(yml);
-                    }
-                    return result;
-                }
-            );
-    }
-
-    /**
      * Is `yaml` or `yml` file?
      * @return True if is the file with `yaml` or `yml` extension, false otherwise.
      */
@@ -151,21 +119,6 @@ public final class ConfigFile {
     }
 
     /**
-     * Extension.
-     * @return Extension if present, empty otherwise.
-     */
-    public Optional<String> extension() {
-        final Optional<String> extnsn;
-        final String val = this.matcher("extension");
-        if (val.isEmpty()) {
-            extnsn = Optional.empty();
-        } else {
-            extnsn = Optional.of(val);
-        }
-        return extnsn;
-    }
-
-    /**
      * Matcher.
      * @param group Matcher group name
      * @return Value for specified group name.
@@ -178,43 +131,6 @@ public final class ConfigFile {
             );
         }
         return matcher.group(group);
-    }
-
-    /**
-     * Config files extensions.
-     */
-    enum Extension {
-        /**
-         * YAML.
-         */
-        YAML(".yaml"),
-
-        /**
-         * YML.
-         */
-        YML(".yml");
-
-        /**
-         * Extension.
-         */
-        private final String extension;
-
-        /**
-         * Ctor.
-         * @param extension Extension
-         */
-        Extension(final String extension) {
-            this.extension = extension;
-        }
-
-        /**
-         * Key.
-         * @param name Filename
-         * @return Key from filename and extension.
-         */
-        Key key(final String name) {
-            return new Key.From(String.format("%s%s", name, this.extension));
-        }
     }
 
 }

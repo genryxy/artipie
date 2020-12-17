@@ -68,39 +68,6 @@ final class ConfigFileTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {".yaml", ".yml", ""})
-    void valueFromStorageReturnsContentWhenYamlExist(final String extension) {
-        final Storage storage = new InMemoryStorage();
-        this.saveByKey(storage, ".yml");
-        MatcherAssert.assertThat(
-            new PublisherAs(
-                new ConfigFile(new Key.From(ConfigFileTest.NAME + extension))
-                    .valueFrom(storage)
-                    .toCompletableFuture().join()
-            ).bytes()
-                .toCompletableFuture().join(),
-            new IsEqual<>(ConfigFileTest.CONTENT)
-        );
-    }
-
-    @Test
-    void valueFromStorageReturnsYamlWhenBothExist() {
-        final Storage storage = new InMemoryStorage();
-        final String yaml = String.join("", Arrays.toString(ConfigFileTest.CONTENT), "some");
-        this.saveByKey(storage, ".yml");
-        this.saveByKey(storage, ".yaml", yaml.getBytes());
-        MatcherAssert.assertThat(
-            new PublisherAs(
-                new ConfigFile(new Key.From(ConfigFileTest.NAME))
-                    .valueFrom(storage)
-                    .toCompletableFuture().join()
-            ).asciiString()
-                .toCompletableFuture().join(),
-            new IsEqual<>(yaml)
-        );
-    }
-
-    @ParameterizedTest
     @ValueSource(strings = {".yaml", ".yml", ".jar", ".json", ""})
     void getFilenameAndExtensionCorrect(final String extension) {
         final String name = "filename";
@@ -109,11 +76,6 @@ final class ConfigFileTest {
             new ConfigFile(String.join("", name, extension)).name(),
             new IsEqual<>(name)
         );
-        MatcherAssert.assertThat(
-            "Correct extension",
-            new ConfigFile(String.join("", name, extension)).extension().orElse(""),
-            new IsEqual<>(extension)
-        );
     }
 
     @Test
@@ -121,14 +83,6 @@ final class ConfigFileTest {
         Assertions.assertThrows(
             IllegalStateException.class,
             () -> new ConfigFile("").name()
-        );
-    }
-
-    @Test
-    void valueFromFailsForNotYamlOrYmlOrWithoutExtensionFiles() {
-        Assertions.assertThrows(
-            IllegalStateException.class,
-            () -> new ConfigFile("name.json").valueFrom(new InMemoryStorage())
         );
     }
 
