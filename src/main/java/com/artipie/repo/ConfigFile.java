@@ -78,11 +78,11 @@ public final class ConfigFile {
      * @param storage Storage where the file with different extensions is checked for existence
      * @return True if a file with either of the two extensions exists, false otherwise.
      */
-    public CompletableFuture<Boolean> existsIn(final Storage storage) {
-        final CompletableFuture<Boolean> res;
-        if (this.isYamlOrYml() || this.extension().isEmpty()) {
+    public CompletionStage<Boolean> existsIn(final Storage storage) {
+        final CompletionStage<Boolean> res;
+        if (this.isYamlOrYml() || this.matcher("extension").isEmpty()) {
             final String name = this.name();
-            final Key yaml = Extension.YAML.key(name);
+            final Key yaml = new Key.From(String.format("%s.yaml", name));
             res = storage.exists(yaml)
                 .thenCompose(
                     exist -> {
@@ -90,7 +90,7 @@ public final class ConfigFile {
                         if (exist) {
                             result = CompletableFuture.completedFuture(true);
                         } else {
-                            final Key yml = Extension.YML.key(name);
+                            final Key yml = new Key.From(String.format("%s.yml", name));
                             result = storage.exists(yml);
                         }
                         return result;
