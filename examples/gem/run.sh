@@ -10,8 +10,7 @@ sleep 5
 gem --version
 ruby --version
 sudo gem update --system
-sudo gem install rubygems-update
-sudo update_rubygems
+sudo gem install rubygems-update update_rubygems
 gem list
 gem --version
 # Push a gem into artipie.
