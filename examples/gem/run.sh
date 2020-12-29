@@ -8,6 +8,7 @@ docker run --rm -d --name artipie -it -v $(pwd)/artipie.yaml:/etc/artipie/artipi
 sleep 5
 
 gem --version
+ruby --version
 # Push a gem into artipie.
 export GEM_HOST_API_KEY=$(echo -n "hello:world" | base64)
 cd sample-project
