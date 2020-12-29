@@ -15,7 +15,7 @@ gem --version
 export GEM_HOST_API_KEY=$(echo -n "hello:world" | base64)
 #cd sample-project
 #gem build sample-project.gemspec
-cd ../../src/test/resources/gem/rails-6.0.2.2.gem
+cd ../../src/test/resources/gem
 gem --version
 #gem push sample-project-1.0.0.gem --host http://localhost:8080/my-gem
 gem push rails-6.0.2.2.gem --host http://localhost:8080/my-gem
