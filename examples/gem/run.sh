@@ -12,6 +12,7 @@ ruby --version
 # sudo gem update --system
 # sudo gem install rubygems-update --default
 sudo gem update --system '3.2.3'
+sudo gem yank -v '2.7.6'
 gem list
 gem --version
 # Push a gem into artipie.
