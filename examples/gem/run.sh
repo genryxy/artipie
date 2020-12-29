@@ -9,6 +9,7 @@ sleep 5
 
 gem --version
 ruby --version
+export GEM_HOST_API_KEY=$(echo -n "hello:world" | base64)
 # sudo gem update --system
 # sudo gem install rubygems-update --default
 sudo gem update --system '3.2.3'
@@ -20,7 +21,6 @@ cd sample-project
 gem build sample-project.gemspec
 #cd ../../src/test/resources/gem
 #gem --version
-export GEM_HOST_API_KEY=$(echo -n "hello:world" | base64)
 ls
 sleep 10
 gem push sample-project-1.0.0.gem --host http://localhost:8080/my-gem
