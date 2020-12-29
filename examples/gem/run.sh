@@ -9,6 +9,8 @@ sleep 5
 
 gem --version
 ruby --version
+gem update --system
+gem --version
 # Push a gem into artipie.
 export GEM_HOST_API_KEY=$(echo -n "hello:world" | base64)
 cd sample-project
