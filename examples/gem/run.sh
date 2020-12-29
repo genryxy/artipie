@@ -13,7 +13,7 @@ export GEM_HOST_API_KEY=$(echo -n "hello:world" | base64)
 # sudo gem update --system
 # sudo gem install rubygems-update --default
 sudo gem update --system '3.2.3'
-sudo gem uninstall -v '2.7.6'
+sudo gem uninstall rubygems -v '2.7.6'
 gem list
 gem --version
 # Push a gem into artipie.
