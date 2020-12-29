@@ -7,13 +7,16 @@ docker run --rm -d --name artipie -it -v $(pwd)/artipie.yaml:/etc/artipie/artipi
 # Wait for container to be ready for new connections.
 sleep 5
 
+gem --version
 # Push a gem into artipie.
 export GEM_HOST_API_KEY=$(echo -n "hello:world" | base64)
 cd sample-project
 gem build sample-project.gemspec
+gem --version
 gem push sample-project-1.0.0.gem --host http://localhost:8080/my-gem
 cd ..
 
+gem --version
 # Fetch the uploaded earlier gem from artipie.
 gem fetch sample-project --source http://localhost:8080/my-gem
 
