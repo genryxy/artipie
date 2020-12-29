@@ -1,11 +1,11 @@
 name: "Proof::docker"
-on:
+#on:
 #  push:
 #    branches:
 #      - "master"
-  pull_request:
-    branches:
-      - "master"
+#  pull_request:
+#    branches:
+#      - "master"
 jobs:
   proof:
     runs-on: ubuntu-latest
