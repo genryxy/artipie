@@ -12,9 +12,8 @@ ruby --version
 gem env --verbose
 export GEM_HOST_API_KEY=$(echo -n "hello:world" | base64)
 
- sudo gem update --system
- bundler --version
- bundler install
+sudo gem update --system
+sudo gem install rubygems-update
 # sudo gem install rubygems-update --default
 #sudo gem update --system '3.2.1' --debug --verbose --backtrace
 #gem env --verbose
@@ -22,7 +21,7 @@ export GEM_HOST_API_KEY=$(echo -n "hello:world" | base64)
 #sudo gem uninstall rubygems -v '2.7.6'
 
 #gem list
-gem --version
+sudo gem --version
 # Push a gem into artipie.
 cd sample-project
 gem build sample-project.gemspec
