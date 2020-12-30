@@ -29,7 +29,7 @@ gem build sample-project.gemspec
 #gem --version
 ls
 sleep 10
-gem push sample-project-1.0.0.gem --host https://localhost:8080/my-gem --debug --verbose --backtrace
+gem push sample-project-1.0.0.gem --host https://hello:world@localhost:8080/my-gem --debug --verbose --backtrace
 #gem push rails-6.0.2.2.gem --host http://localhost:8080/my-gem
 
 cd ..
