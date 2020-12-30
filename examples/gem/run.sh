@@ -12,6 +12,8 @@ ruby --version
 gem env --verbose
 export GEM_HOST_API_KEY=$(echo -n "hello:world" | base64)
 
+sudo apt install libssl1.0-dev
+
 # sudo gem update --system
 # sudo gem install rubygems-update --default
 #sudo gem update --system '3.2.1' --debug --verbose --backtrace
