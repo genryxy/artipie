@@ -13,7 +13,7 @@ gem env --verbose
 export GEM_HOST_API_KEY=$(echo -n "hello:world" | base64)
 # sudo gem update --system
 # sudo gem install rubygems-update --default
-sudo gem update --system '3.2.1' --debug --verbose --debug
+sudo gem update --system '3.2.1' --debug --verbose --backtrace
 gem env --verbose
 gem list
 #sudo gem uninstall rubygems -v '2.7.6'
@@ -26,13 +26,13 @@ gem build sample-project.gemspec
 #gem --version
 ls
 sleep 10
-gem push sample-project-1.0.0.gem --host http://localhost:8080/my-gem --debug --verbose --debug
+gem push sample-project-1.0.0.gem --host http://localhost:8080/my-gem --debug --verbose --backtrace
 #gem push rails-6.0.2.2.gem --host http://localhost:8080/my-gem
 
 cd ..
 
 # Fetch the uploaded earlier gem from artipie.
-gem fetch sample-project --source http://localhost:8080/my-gem --debug --verbose --debug
+gem fetch sample-project --source http://localhost:8080/my-gem --debug --verbose --backtrace
 #gem fetch rails --source http://localhost:8080/my-gem
 
 
