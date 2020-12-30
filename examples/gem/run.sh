@@ -13,7 +13,8 @@ gem env --verbose
 export GEM_HOST_API_KEY=$(echo -n "hello:world" | base64)
 # sudo gem update --system
 # sudo gem install rubygems-update --default
-sudo gem update --system '2.7.6' --debug --verbose --debug
+sudo gem update --system '3.2.1' --debug --verbose --debug
+gem env --verbose
 gem list
 #sudo gem uninstall rubygems -v '2.7.6'
 #gem list
