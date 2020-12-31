@@ -28,7 +28,8 @@ gem build sample-project.gemspec
 #cd ../../src/test/resources/gem
 
 #gem --version
-gem push sample-project-1.0.0.gem --host http://hello:world@localhost:8080/my-gem --debug --verbose --backtrace
+gem signin --host http://localhost:8080/my-gem --debug --verbose --backtrace
+gem push sample-project-1.0.0.gem --host http://localhost:8080/my-gem --debug --verbose --backtrace
 #gem push rails-6.0.2.2.gem --host http://localhost:8080/my-gem
 
 cd ..
