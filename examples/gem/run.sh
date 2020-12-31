@@ -29,13 +29,13 @@ gem build sample-project.gemspec
 
 #gem --version
 #gem signin --host http://localhost:8080/my-gem --debug --verbose --backtrace
-/bin/bash -c GEM_HOST_API_KEY=$(echo -n "hello:world" | base64) gem push sample-project-1.0.0.gem --host http://localhost:8080/my-gem --debug --verbose --backtrace
+/bin/bash -c GEM_HOST_API_KEY=$(echo -n "hello:world" | base64) gem push sample-project-1.0.0.gem --host http://localhost:8080/my-gem
 #gem push rails-6.0.2.2.gem --host http://localhost:8080/my-gem
 
 cd ..
 
 # Fetch the uploaded earlier gem from artipie.
-gem fetch sample-project --source http://localhost:8080/my-gem
+/bin/bash -c GEM_HOST_API_KEY=$(echo -n "hello:world" | base64) gem fetch sample-project --source http://localhost:8080/my-gem
 #gem fetch rails --source http://localhost:8080/my-gem
 
 
