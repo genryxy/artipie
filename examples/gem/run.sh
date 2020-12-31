@@ -10,7 +10,7 @@ sleep 5
 gem --version
 ruby --version
 gem env --verbose
-export GEM_HOST_API_KEY=$(echo -n "hello:world" | base64)
+#export GEM_HOST_API_KEY=$(echo -n "hello:world" | base64)
 
 #sudo gem update --system
 #sudo gem install rubygems-update
@@ -28,7 +28,7 @@ gem build sample-project.gemspec
 #cd ../../src/test/resources/gem
 
 #gem --version
-gem signin --host http://localhost:8080/my-gem --debug --verbose --backtrace
+gem signin --host http://hello:world@localhost:8080/my-gem --debug --verbose --backtrace
 gem push sample-project-1.0.0.gem --host http://localhost:8080/my-gem --debug --verbose --backtrace
 #gem push rails-6.0.2.2.gem --host http://localhost:8080/my-gem
 
