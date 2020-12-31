@@ -7,37 +7,16 @@ docker run --rm -d --name artipie -it -v $(pwd)/artipie.yaml:/etc/artipie/artipi
 # Wait for container to be ready for new connections.
 sleep 5
 
-gem --version
-ruby --version
-gem env --verbose
-#export GEM_HOST_API_KEY=$(echo -n "hello:world" | base64)
-
-#sudo gem update --system
-#sudo gem install rubygems-update
-# sudo gem install rubygems-update --default
-#sudo gem update --system '3.2.1' --debug --verbose --backtrace
-#gem env --verbose
-#gem list
-#sudo gem uninstall rubygems -v '2.7.6'
-
-#gem list
-sudo gem --version
 # Push a gem into artipie.
 cd sample-project
 gem build sample-project.gemspec
-#cd ../../src/test/resources/gem
 
-#gem --version
-#gem signin --host http://localhost:8080/my-gem --debug --verbose --backtrace
-/bin/bash -c GEM_HOST_API_KEY=$(echo -n "hello:world" | base64) gem push sample-project-1.0.0.gem --host http://localhost:8080/my-gem --debug --verbose --backtrace
-#gem push rails-6.0.2.2.gem --host http://localhost:8080/my-gem
+/bin/bash -c GEM_HOST_API_KEY=$(echo -n "hello:world" | base64) gem push sample-project-1.0.0.gem --host http://localhost:8080/my-gem
 
 cd ..
 
 # Fetch the uploaded earlier gem from artipie.
-/bin/bash -c GEM_HOST_API_KEY=$(echo -n "hello:world" | base64) gem fetch sample-project --source http://localhost:8080/my-gem --debug --verbose --backtrace
-#gem fetch rails --source http://localhost:8080/my-gem
-
+/bin/bash -c GEM_HOST_API_KEY=$(echo -n "hello:world" | base64) gem fetch sample-project --source http://localhost:8080/my-gem
 
 # Remove container.
 docker stop artipie
