@@ -1,11 +1,11 @@
 name: "Proof::npm"
-on:
-  push:
-    branches:
-      - "master"
-  pull_request:
-    branches:
-      - "master"
+#on:
+#  push:
+#    branches:
+#      - "master"
+#  pull_request:
+#    branches:
+#      - "master"
 jobs:
   proof:
     runs-on: ubuntu-latest

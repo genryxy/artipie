@@ -1,12 +1,12 @@
 ---
 name: Reports
-"on":
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
+#"on":
+#  push:
+#    branches:
+#      - master
+#  pull_request:
+#    branches:
+#      - master
 jobs:
   codecov:
     runs-on: ubuntu-latest

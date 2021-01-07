@@ -1,9 +1,9 @@
 ---
 name: Experimental CI tools
-"on":
-  push:
-    branches:
-      - master
+#"on":
+#  push:
+#    branches:
+#      - master
 jobs:
   aibolit:
     runs-on: ubuntu-latest
